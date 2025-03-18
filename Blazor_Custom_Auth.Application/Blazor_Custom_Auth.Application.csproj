@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Blazor_Custom_Auth.Domain\Blazor_Custom_Auth.Domain.csproj" />
+    <ProjectReference Include="..\Blazor_Custom_Auth\Blazor_Custom_Auth.Client\Blazor_Custom_Auth.Client.csproj" />
   </ItemGroup>
 
 </Project>
