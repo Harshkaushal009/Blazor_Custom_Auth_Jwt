@@ -35,7 +35,7 @@ namespace Blazor_Custom_Auth.Application.Services
                 _config["Jwt:Issuer"],
                 _config["Jwt:Audience"],
                 claims,
-                expires: DateTime.UtcNow.AddMinutes(2),  
+                expires: DateTime.Now.AddMinutes(2),  
                 signingCredentials: credentials);
 
             return new JwtSecurityTokenHandler().WriteToken(token);
