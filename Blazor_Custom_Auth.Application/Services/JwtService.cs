@@ -1,4 +1,6 @@
 ﻿using Blazor_Custom_Auth.Domain.Entities;
+using Blazored.LocalStorage;
+using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System;
@@ -14,9 +16,11 @@ namespace Blazor_Custom_Auth.Application.Services
     public class JwtService
     {
         private readonly IConfiguration _config;
-        public JwtService(IConfiguration config)
+        private readonly ILocalStorageService _localStorageService;
+        public JwtService(IConfiguration config,ILocalStorageService localStorageService)
         {
             _config = config;
+            _localStorageService = localStorageService;
         }
 
         public string GenerateToken(User user)
@@ -35,11 +39,10 @@ namespace Blazor_Custom_Auth.Application.Services
                 _config["Jwt:Issuer"],
                 _config["Jwt:Audience"],
                 claims,
-                expires: DateTime.Now.AddMinutes(2),  
+                expires: DateTime.Now.AddHours(24),  
                 signingCredentials: credentials);
 
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
-    
-}
+    }
 }
